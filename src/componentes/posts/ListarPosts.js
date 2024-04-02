@@ -1,13 +1,13 @@
-import ObterCategorias from "./ObterCategorias";
+import ObterPosts from "./ObterPosts";
 
-const CorpoTabela = async (tabela) => {
-    const categorias = await ObterCategorias();
+const CorpoTabela = async (tabela, category_id) => {
+    const posts = await ObterPosts(category_id);
 
-    categorias.data.categories.forEach(categoria => {
+    posts.data.posts.forEach(post => {
         tabela.querySelector("tbody").innerHTML += `
             <tr>
-                <td>${categoria.id}</td>
-                <td><span onclick="window.navegacao('/posts/${categoria.id}')">${categoria.name}</span></td>
+                <td>${post.id}</td>
+                <td>${post.name}</td>
                 <td></td>
             </tr>
         `;
@@ -16,7 +16,7 @@ const CorpoTabela = async (tabela) => {
     return tabela;
 };
 
-const ListarCategorias = () => {
+const ListarPosts = (category_id) => {
     const tabela = document.createElement("table");
 
     tabela.innerHTML = `
@@ -31,8 +31,8 @@ const ListarCategorias = () => {
         <tbody></tbody>
     `;
 
-    CorpoTabela(tabela);
+    CorpoTabela(tabela, category_id);
     return tabela;
 };
 
-export default ListarCategorias;
+export default ListarPosts;

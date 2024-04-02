@@ -4,7 +4,7 @@ const rootDiv = document.querySelector("#root");
 const r = rotas.map(rota => {
     const padraoParametros = /:([a-zA-Z_]+)/g
     const temParametros = rota.path.match(padraoParametros);
-    const padraoRota = new RegExp(`^${rota.path.replace(/\//g, "\\/").replace(padraoParametros, "([a-zA-Z_]+)")}$`);
+    const padraoRota = new RegExp(`^${rota.path.replace(/\//g, "\\/").replace(padraoParametros, "(.*?)")}$`);
 
     return {...rota, temParametros, padraoRota};
 });

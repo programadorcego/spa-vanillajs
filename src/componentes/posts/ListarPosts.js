@@ -8,7 +8,7 @@ const CorpoTabela = async (tabela, category_id) => {
             <tr>
                 <td>${post.id}</td>
                 <td>${post.name}</td>
-                <td></td>
+                <td><button onclick="window.navegacao('/post/${post.id}')">Editar</button></td>
             </tr>
         `;
     });

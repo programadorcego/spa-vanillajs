@@ -1,6 +1,6 @@
-import ObterPost from "./ObterPost";
+import ObterPost from "./Requests/ObterPost";
 import Formulario from "./Formulario";
-import ObterCategorias from "../categorias/ObterCategorias";
+import ObterCategorias from "../categorias/Requests/ObterCategorias";
 
 const ValorFormulario = async (container, id) => {
     const post = await ObterPost(id);

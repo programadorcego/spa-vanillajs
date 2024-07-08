@@ -1,4 +1,4 @@
-import ObterCategorias from "./ObterCategorias";
+import ObterCategorias from "./Requests/ObterCategorias";
 
 const CorpoTabela = async (tabela) => {
     const categorias = await ObterCategorias();

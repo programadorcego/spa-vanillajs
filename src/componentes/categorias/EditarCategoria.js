@@ -1,4 +1,4 @@
-import ObterCategoria from "./ObterCategoria";
+import ObterCategoria from "./Requests/ObterCategoria";
 import Formulario from "./Formulario";
 
 const ValorFormulario = async (container, id) => {

@@ -1,4 +1,4 @@
-import ObterPosts from "./ObterPosts";
+import ObterPosts from "./Requests/ObterPosts";
 
 const CorpoTabela = async (tabela, category_id) => {
     const posts = await ObterPosts(category_id);

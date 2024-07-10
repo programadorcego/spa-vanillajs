@@ -18,6 +18,16 @@ const Formulario = `
             </select>
         </div>
 
+        <div>
+            <div>
+                <label for="content">Conteúdo *</label>
+            </div>
+
+            <div>
+                <textarea id="content" required></textarea>
+            </div>
+        </div>
+
         <button id="salvar">Salvar</button>
     </div>
 `;

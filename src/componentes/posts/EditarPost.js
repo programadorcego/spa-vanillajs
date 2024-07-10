@@ -1,4 +1,5 @@
 import ObterPost from "./Requests/ObterPost";
+import SalvarPost from "./Requests/SalvarPost";
 import Formulario from "./Formulario";
 import ObterCategorias from "../categorias/Requests/ObterCategorias";
 
@@ -26,6 +27,21 @@ const EditarPost = id => {
     let container = document.createElement("div");
     container.innerHTML = Formulario;
     ValorFormulario(container, id);
+
+    container.querySelector("#salvar").addEventListener("click", async (e) => {
+        e.target.setAttribute("disabled", "disabled");
+
+        try {
+            const salvar = await SalvarPost(container, id);
+
+            if(salvar.data.status === "error") throw new Error(salvar.data.message);
+
+            alert("Post atualizado com sucesso!");
+            window.navegacao(`/post/${id}`);
+        } catch(err) {
+            console.error(err);
+        }
+    });
 
     return container;
 };

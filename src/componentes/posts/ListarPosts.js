@@ -1,16 +1,35 @@
 import ObterPosts from "./Requests/ObterPosts";
+import RemoverPost from "./Requests/RemoverPost";
+
+const ApagarPost = async (id, row) => {
+    if(confirm("Tem certeza que deseja remover este Post?")) {
+        try {
+            const apagar = await RemoverPost(id);
+
+            if(apagar.data.status === "error") throw new Error(apagar.data.message);
+
+            alert("Post removido com sucesso!");
+
+            row.remove();
+        } catch(err) {
+            console.error(err);
+        }
+    }
+};
 
 const CorpoTabela = async (tabela, category_id) => {
     const posts = await ObterPosts(category_id);
 
     posts.data.posts.forEach(post => {
-        tabela.querySelector("tbody").innerHTML += `
-            <tr>
+        const row = document.createElement("tr");
+        row.innerHTML += `
                 <td>${post.id}</td>
                 <td>${post.name}</td>
-                <td><button onclick="window.navegacao('/post/${post.id}')">Editar</button></td>
-            </tr>
+                <td><button onclick="window.navegacao('/post/${post.id}')">Editar</button>
+                    <button class="remove-post">Remover</button></td>
         `;
+        row.querySelector(".remove-post").addEventListener("click", () => ApagarPost(post.id, row));
+        tabela.querySelector("tbody").append(row);
     });
 
     return tabela;
